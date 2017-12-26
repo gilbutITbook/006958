@@ -7,7 +7,7 @@ import numpy
 import os
 import tensorflow as tf
 
-#seed값 설정
+# seed 값 설정
 seed = 0
 numpy.random.seed(seed)
 tf.set_random_seed(seed)
@@ -29,17 +29,17 @@ model.compile(loss='binary_crossentropy',
           optimizer='adam',
           metrics=['accuracy'])
 
-#모델의 저장 폴더 만들기
+# 모델 저장 폴더 만들기
 MODEL_DIR = './model/'
 if not os.path.exists(MODEL_DIR):
    os.mkdir(MODEL_DIR)
 
 modelpath="./model/{epoch:02d}-{val_loss:.4f}.hdf5"
 
-#모델 업데이트 및 저장
+# 모델 업데이트 및 저장
 checkpointer = ModelCheckpoint(filepath=modelpath, monitor='val_loss', verbose=1, save_best_only=True)
 
-#학습의 자동 중단 설정
+# 학습 자동 중단 설정
 early_stopping_callback = EarlyStopping(monitor='val_loss', patience=100)
 
 model.fit(X, Y, validation_split=0.2, epochs=3500, batch_size=500, verbose=0, callbacks=[early_stopping_callback,checkpointer])

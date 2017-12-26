@@ -6,7 +6,7 @@ import pandas as pd
 import numpy
 import tensorflow as tf
 
-#seed값 설정
+# seed 값 설정
 seed = 0
 numpy.random.seed(seed)
 tf.set_random_seed(seed)
@@ -28,11 +28,11 @@ model.compile(loss='binary_crossentropy',
            optimizer='adam',
            metrics=['accuracy'])
 
-#자동 중단 설정
+# 자동 중단 설정
 early_stopping_callback = EarlyStopping(monitor='val_loss', patience=100)
 
-#모델 실행
+# 모델 실행
 model.fit(X, Y, validation_split=0.2, epochs=2000, batch_size=500, callbacks=[early_stopping_callback])
 
-#결과 출력
+# 결과 출력
 print("\n Accuracy: %.4f" % (model.evaluate(X, Y)[1]))
