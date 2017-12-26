@@ -7,7 +7,7 @@ import pandas as pd
 import numpy
 import tensorflow as tf
 
-#seed값 설정
+# seed 값 설정
 seed = 0
 numpy.random.seed(seed)
 tf.set_random_seed(seed)

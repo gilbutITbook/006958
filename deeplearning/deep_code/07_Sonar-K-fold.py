@@ -7,7 +7,7 @@ import numpy
 import pandas as pd
 import tensorflow as tf
 
-#seed값 설정
+# seed 값 설정
 seed = 0
 numpy.random.seed(seed)
 tf.set_random_seed(seed)
@@ -22,14 +22,14 @@ e = LabelEncoder()
 e.fit(Y_obj)
 Y = e.transform(Y_obj)
 
-#10개의 파일로 쪼갬
+# 10개의 파일로 쪼갬
 n_fold = 10
 skf = StratifiedKFold(n_splits=n_fold, shuffle=True, random_state=seed)
 
-#빈 Accuracy 배열
+# 빈 accuracy 배열
 accuracy = []
 
-#모델의 설정, 컴파일, 실행
+# 모델의 설정, 컴파일, 실행
 for train, test in skf.split(X, Y):
     model = Sequential()
     model.add(Dense(24, input_dim=60, activation='relu'))
@@ -42,5 +42,5 @@ for train, test in skf.split(X, Y):
     k_accuracy = "%.4f" % (model.evaluate(X[test], Y[test])[1])
     accuracy.append(k_accuracy)
 
-#결과 출력
+# 결과 출력
 print("\n %.f fold accuracy:" % n_fold, accuracy)
