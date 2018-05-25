@@ -30,7 +30,7 @@ graph = fig.add_subplot(111, projection='3d')
 
 graph.scatter(hour_class['study_hours'],hour_class['private_class'],hour_class['Score'],
               c='blue',marker='o', alpha=1)
-graph.plot_surface(a,b,fittedY.reshape(a.shape),
+graph.plot_surface(a,b,fittedY.values.reshape(a.shape),
                    rstride=1, cstride=1, color='none', alpha=0.4)
 graph.set_xlabel('study_hours')
 graph.set_ylabel('private_class')
